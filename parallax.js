@@ -1,6 +1,6 @@
 /*!
- * parallax.js v1.3.1 (http://pixelcog.github.io/parallax.js/)
- * @copyright 2015 PixelCog, Inc.
+ * parallax.js v1.4.2 (http://pixelcog.github.io/parallax.js/)
+ * @copyright 2016 PixelCog, Inc.
  * @license MIT (https://github.com/pixelcog/parallax.js/blob/master/LICENSE)
  */
 
@@ -124,6 +124,7 @@
       return this;
     }
 
+
     this.$mirror = $('<div />').prependTo('body');
 
     var slider = this.$element.find('>.parallax-slider');
@@ -237,12 +238,12 @@
 
       if (this.boxOffsetBottom > scrollTop && this.boxOffsetTop <= scrollBottom) {
         this.visibility = 'visible';
+        this.mirrorTop = this.boxOffsetTop  - scrollTop;
+        this.mirrorLeft = this.boxOffsetLeft - scrollLeft;
+        this.offsetTop = this.offsetBaseTop - this.mirrorTop * (1 - this.speed);
       } else {
         this.visibility = 'hidden';
       }
-      this.mirrorTop = this.boxOffsetTop  - scrollTop;
-      this.mirrorLeft = this.boxOffsetLeft - scrollLeft;
-      this.offsetTop = this.offsetBaseTop - this.mirrorTop * (1 - this.speed);
 
       this.$mirror.css({
         transform: 'translate3d(0px, 0px, 0px)',
